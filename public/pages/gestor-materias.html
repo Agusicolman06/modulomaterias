@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestor de Materias</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../styles/gestor-materias.css">
+</head>
+<body>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <div class="layout">
+
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+      <h2 class="logo">Gestor</h2>
+      <ul class="menu">
+        <li><a href="#"><i class="fa-solid fa-house"></i> Inicio</a></li>
+        <li><a href="#"><i class="fa-solid fa-user-graduate"></i> Alumnos</a></li>
+        <li><a href="#"><i class="fa-solid fa-chalkboard-teacher"></i> Profesores</a></li>
+        <li class="activo"><a href="#"><i class="fa-solid fa-book"></i> Materias</a></li>
+        <li><a href="#"><i class="fa-solid fa-gear"></i> Configuración</a></li>
+      </ul>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido">
+      <header class="header">
+        <h1>Gestor de Materias</h1>
+        <div class="botones-header">
+          <button id="btnVerPlan" class="btn btn-secondary">Ver Plan de Estudio</button>
+          <button id="btnAgregarMateria" class="btn btn-primary">+ Nueva Materia</button>
+        </div>
+      </header>
+
+      <!-- CONTENEDOR DE CARDS -->
+      <section id="contenedorMaterias" class="materias-grid">
+        <!-- Las materias se cargarán aquí dinámicamente -->
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL PARA CREAR/EDITAR MATERIAS -->
+  <div id="modalMateria" class="modal oculto">
+    <div class="modal-contenido">
+      <h2 id="modalTitulo">Nueva Materia</h2>
+      <form id="formMateria">
+        <label>Nombre:</label>
+        <input type="text" id="nombre" required>
+
+        <label>Profesor:</label>
+        <input type="text" id="profesor">
+
+        <label>Curso:</label>
+        <select id="cursoId">
+          <option value="">-- Selecciona un curso --</option>
+        </select>
+
+        <label>Día de la semana:</label>
+        <select id="diaSemana">
+          <option value="">-- Selecciona un día --</option>
+          <option value="Lunes">Lunes</option>
+          <option value="Martes">Martes</option>
+          <option value="Miércoles">Miércoles</option>
+          <option value="Jueves">Jueves</option>
+          <option value="Viernes">Viernes</option>
+        </select>
+
+        <label>Hora de inicio:</label>
+        <select id="horaInicio">
+          <option value="">-- Selecciona una hora --</option>
+        </select>
+
+        <label>Hora de fin:</label>
+        <select id="horaFin" disabled>
+          <option value="">-- Selecciona una hora --</option>
+        </select>
+
+        <div class="acciones">
+          <button type="submit" class="btn btn-success">Guardar</button>
+          <button type="button" id="btnCancelar" class="btn btn-secondary">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: PLAN DE ESTUDIO -->
+  <div id="modalPlan" class="modal oculto">
+    <div class="modal-contenido plan">
+      <h2>Plan de Estudio</h2>
+      <label for="selectCurso">Seleccionar curso:</label>
+      <select id="selectCurso">
+        <option value="">-- Selecciona un curso --</option>
+      </select>
+
+      <div id="horarioContainer" class="horario-grid">
+        <!-- Acá se generará el horario dinámicamente -->
+      </div>
+
+      <div class="acciones">
+        <button type="button" id="btnCerrarPlan" class="btn btn-secondary">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../src/gestor-materias.js"></script>
+</body>
+</html>
