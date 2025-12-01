@@ -33,6 +33,36 @@
         </div>
       </header>
 
+      <!-- FILTROS DE BÚSQUEDA -->
+      <section id="filtrosMateria" class="filtros">
+        <div class="filtro">
+          <label for="filtroArea">Área</label>
+          <select id="filtroArea">
+            <option value="">Todas las áreas</option>
+          </select>
+        </div>
+        <div class="filtro">
+          <label for="filtroMateria">Materia</label>
+          <input type="text" id="filtroMateria" placeholder="Nombre de la materia">
+        </div>
+        <div class="filtro">
+          <label for="filtroDia">Día</label>
+          <select id="filtroDia">
+            <option value="">Todos los días</option>
+          </select>
+        </div>
+        <div class="filtro">
+          <label for="filtroHora">Horario</label>
+          <select id="filtroHora">
+            <option value="">Todas las horas</option>
+          </select>
+        </div>
+        <div class="filtro acciones-filtro">
+          <button type="button" id="btnAplicarFiltros" class="btn btn-primary">Aplicar filtros</button>
+          <button type="button" id="btnLimpiarFiltros" class="btn btn-secondary">Limpiar</button>
+        </div>
+      </section>
+
       <!-- CONTENEDOR DE CARDS -->
       <section id="contenedorMaterias" class="materias-grid">
         <!-- Las materias se cargarán aquí dinámicamente -->
@@ -45,36 +75,42 @@
     <div class="modal-contenido">
       <h2 id="modalTitulo">Nueva Materia</h2>
       <form id="formMateria">
-        <label>Nombre:</label>
-        <input type="text" id="nombre" required>
+        <div class="form-field">
+          <label for="areaId">Área</label>
+          <select id="areaId" name="areaId">
+            <option value="">-- Selecciona un área --</option>
+          </select>
+        </div>
 
-        <label>Profesor:</label>
-        <input type="text" id="profesor">
+        <div class="form-field">
+          <label for="catalogoId">Materia</label>
+          <select id="catalogoId" name="catalogoId" disabled>
+            <option value="">Selecciona un área primero</option>
+          </select>
+          <div id="nombreMateriaSeleccionada" class="materia-seleccion">
+            Selecciona un área para ver las materias disponibles.
+          </div>
+        </div>
 
-        <label>Curso:</label>
-        <select id="cursoId">
-          <option value="">-- Selecciona un curso --</option>
-        </select>
+        <div class="form-field">
+          <label for="profesor">Profesor</label>
+          <input type="text" id="profesor" name="profesor" placeholder="Nombre del profesor">
+        </div>
 
-        <label>Día de la semana:</label>
-        <select id="diaSemana">
-          <option value="">-- Selecciona un día --</option>
-          <option value="Lunes">Lunes</option>
-          <option value="Martes">Martes</option>
-          <option value="Miércoles">Miércoles</option>
-          <option value="Jueves">Jueves</option>
-          <option value="Viernes">Viernes</option>
-        </select>
+        <div class="form-field">
+          <label for="cursoId">Curso</label>
+          <select id="cursoId" name="cursoId">
+            <option value="">-- Selecciona un curso --</option>
+          </select>
+        </div>
 
-        <label>Hora de inicio:</label>
-        <select id="horaInicio">
-          <option value="">-- Selecciona una hora --</option>
-        </select>
-
-        <label>Hora de fin:</label>
-        <select id="horaFin" disabled>
-          <option value="">-- Selecciona una hora --</option>
-        </select>
+        <div class="form-field form-field--horarios">
+          <div class="horarios-header">
+            <label for="btnSeleccionarHorarios">Horarios seleccionados</label>
+            <button type="button" id="btnSeleccionarHorarios" class="btn btn-primary btn-sm">Seleccionar en plan</button>
+          </div>
+          <div id="resumenHorarios" class="resumen-horarios">No hay bloques seleccionados.</div>
+        </div>
 
         <div class="acciones">
           <button type="submit" class="btn btn-success">Guardar</button>
@@ -98,11 +134,23 @@
       </div>
 
       <div class="acciones">
+        <button type="button" id="btnGuardarPlan" class="btn btn-success">Guardar selección</button>
         <button type="button" id="btnCerrarPlan" class="btn btn-secondary">Cerrar</button>
       </div>
     </div>
   </div>
 
   <script src="../src/gestor-materias.js"></script>
+
+  <div id="alertOverlay" class="alert-overlay oculto" role="dialog" aria-modal="true">
+    <div class="alert-modal" role="document">
+      <h3 id="alertTitle">Aviso</h3>
+      <p id="alertMessage"></p>
+      <div class="alert-actions">
+        <button type="button" id="alertSecondary" class="btn btn-secondary">Cancelar</button>
+        <button type="button" id="alertPrimary" class="btn btn-primary">Aceptar</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
